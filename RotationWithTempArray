@@ -1,0 +1,48 @@
+package rotation;
+
+import java.util.Scanner;
+
+public class RotationWithTempArray {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int testCases = /*sc.nextInt();*/ 1;
+
+        for (int i = 0; i < testCases; i++) {
+            int n = /*sc.nextInt();*/12;
+            int d = /* sc.nextInt(); */3;
+            d = d % n;
+            int[] arr = /*new int[n];*/{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+            /*
+             * for (int j = 0; j < n; j++) { arr[j] = sc.nextInt(); }
+             */
+            arr = rotate(arr, d, n);
+            printArr(arr);
+        }
+    }
+
+    private static void printArr(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(" " + arr[i]);
+        }
+
+    }
+
+    private static int[] rotate(int[] arr, int d, int n) {
+        int[] temp = new int[d];
+        for (int i = 0; i < d; i++) {
+            temp[i] = arr[i];
+        }
+
+        for (int i = 0; i < n - d; i++) {
+            arr[i] = arr[i + d];
+        }
+
+        for (int i = n-d, j = 0; i < n && j < d; i++, j++) {
+            arr[i] = temp[j];
+        }
+
+        return arr;
+    }
+
+}
