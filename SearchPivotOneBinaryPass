@@ -1,0 +1,55 @@
+package rotation.pivotsearch;
+
+import java.util.Scanner;
+
+public class SearchPivotOneBinaryPass {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = /*sc.nextInt();*/1;
+        for (int i = 0; i < t; i++) {
+            int n = /*sc.nextInt();*/9;
+            int[] arr = /*new int[n];*/{5, 6, 7, 8, 9, 10, 1, 2, 3};
+            /*
+             * for (int j = 0; j < n; j++) { arr[j] = sc.nextInt();
+             * 
+             * }
+             */
+            int key = /* sc.nextInt(); */3;
+            System.out.println(findPivotSearch(arr, key, 0, n-1));
+        }
+        sc.close();
+    }
+
+    private static int findPivotSearch(int[] arr, int key, int i, int n) {
+        int mid = (i + n) / 2;
+
+        if (i > n) {
+            return -1;
+        }
+        
+        if (arr[mid] == key) {
+            return mid;
+        }
+        
+        if(arr[i] <= arr[mid]) {
+            /*1st half sorted*/
+            if(key < arr[mid] && key >= arr[i]) {
+                /*key present in 1st half*/
+                return findPivotSearch(arr, key, i, mid-1 );
+            }else {
+                /*key not present in 1st half, search in 2nd half*/
+                return findPivotSearch(arr, key, mid+1, n);
+            }
+        }else {
+            /*2nd half sorted*/
+            if(key > arr[mid] && key <= arr[n]) {
+                return findPivotSearch(arr, key, mid+1, n);
+            }else {
+                return findPivotSearch(arr, key, i, mid-1 );
+            }
+        }
+
+    }
+
+}
