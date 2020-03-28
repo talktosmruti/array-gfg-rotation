@@ -1,0 +1,28 @@
+package rotation;
+
+public class ElementAfterRotation {
+    
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5};
+        int[][] ranges= { {0, 2}, {0, 3}, {1,4} };
+        int index = 1;
+        System.out.println(findElementAfterRotation(arr, ranges, index));
+    }
+
+    private static int findElementAfterRotation(int[] arr, int[][] ranges, int index) {
+
+        for(int i=ranges.length-1;i>=0;i--) {
+            int start = ranges[i][0];
+            int end = ranges[i][1];
+            if(index>=start && index<=end) {
+                if(start == index) {
+                    index = end;
+                }else {
+                    index--;
+                }
+            }
+        }
+        return arr[index];
+    }
+
+}
