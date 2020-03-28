@@ -1,0 +1,52 @@
+package rotation;
+
+import java.util.Scanner;
+
+public class RotationByJuggling {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int testCases = /*sc.nextInt();*/ 1;
+
+        for (int i = 0; i < testCases; i++) {
+            int n = /*sc.nextInt();*/12;
+            int d = /* sc.nextInt(); */3;
+            d = d % n;
+            int[] arr = /*new int[n];*/{1,2 ,3,4,5,6,7,8,9,10,11,12};
+            /*
+             * for (int j = 0; j < n; j++) { arr[j] = sc.nextInt(); }
+             */
+            arr = rotate(arr, d, n);
+            printArr(arr);
+        }
+    }
+
+    private static void printArr(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(" " + arr[i]);
+        }
+
+    }
+
+    private static int[] rotate(int[] arr, int d, int n) {
+        int gcd = gcd(d,n);
+        for(int i=0;i<gcd;i++) {
+            int temp = arr[i];
+            for(int j=i;j<(n-d)+i;j=j+d) {
+                arr[j] = arr[j+d];
+            }
+            arr[(n-gcd)+i] = temp;
+        }
+        return arr;
+    }
+
+    private static int gcd(int a, int b) {
+        if(b==0) {
+            return a;
+        }else {
+            return gcd(b,a%b);
+        }
+        
+    }
+
+}
