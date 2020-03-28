@@ -1,0 +1,44 @@
+package rotation;
+
+import java.util.Scanner;
+
+public class RotationOneByOne {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int testCases = /*sc.nextInt();*/ 1;
+
+        for (int i = 0; i < testCases; i++) {
+            int n = /*sc.nextInt();*/5;
+            int d = /* sc.nextInt(); */2;
+            d = d % n;
+            int[] arr = /*new int[n];*/{1,2 ,3,4,5};
+            /*
+             * for (int j = 0; j < n; j++) { arr[j] = sc.nextInt(); }
+             */
+            arr = rotate(arr, d, n);
+            printArr(arr);
+        }
+    }
+
+    private static void printArr(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(" " + arr[i]);
+        }
+
+    }
+
+    private static int[] rotate(int[] arr, int d, int n) {
+        for(int i=0;i<d;i++) {
+            int oth= arr[0];
+            for(int j=0;j<n-1;j++) {
+                
+                arr[j]=arr[(j+1)];
+            }
+            arr[n-1]=oth;
+        }
+
+        return arr;
+    }
+
+}
