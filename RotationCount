@@ -1,0 +1,46 @@
+package rotation.pivotsearch;
+
+import java.util.Scanner;
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+public class RotationCount
+ {
+    public static void main (String[] args) throws IOException {
+
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        for (int i = 0; i < t; i++) {
+            int n = sc.nextInt();
+            Long[] arr = new Long[n];
+            for (int j = 0; j < n; j++) {
+                arr[j] = sc.nextLong();
+
+            }
+            System.out.println(findRotationCount(arr, n));
+        }
+        sc.close();
+     }
+     
+     private static int findRotationCount(Long[] arr,int n){
+
+         int minIndex = 0;
+        Long min = arr[0];
+        for (int i = 0; i < n; i++) {
+            if (arr[i] < min) {
+                minIndex = i;
+                min = arr[i];
+            }
+        }
+        
+        /*Corner case when last index is min*/
+        if(arr[n-1] == min) {
+            minIndex = n-1;
+        }
+        return minIndex;
+         
+     }
+}
+
+
